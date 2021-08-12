@@ -46,7 +46,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return 'get one';
+       $article = Article::where('id', $id)->first();
+       
+       return response()->json(['article' => $article], 200);
     }
 
     /**
