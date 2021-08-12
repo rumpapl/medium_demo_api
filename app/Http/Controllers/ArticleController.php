@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Article;
+
 class ArticleController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::orderBy('created_at', 'desc')->get();
+        return response()->json(['articles'=>$articles], 200);
+
     }
 
     /**
@@ -35,7 +39,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-       //
+        return 'get one';
     }
 
     /**
