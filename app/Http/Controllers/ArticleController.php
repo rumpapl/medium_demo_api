@@ -60,7 +60,15 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $article = Article::where('id', $id)->first();
+
+        $article->title = $request->get('title');
+        $article->description = $request->get('description');
+
+        $article->save();
+
+        return response()->json(['article' => $article], 200);
     }
 
     /**
