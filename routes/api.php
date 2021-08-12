@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/articles')->group(function(){
+   Route::get('/index', [ArticleController::class, 'index']);
+   Route::post('/store', [ArticleController::class, 'store']);
+   Route::get('/show/{id}', [ArticleController::class, 'show']);
+   Route::put('/update/{id}', [ArticleController::class, 'update']);
+   Route::delete('/delete/{id}', [ArticleController:: class, 'destroy']);
 });
